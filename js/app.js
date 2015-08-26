@@ -31,7 +31,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "views/template.html",
             controller: 'PayNowCtrl'
         })
-
+  
     .state('feature', {
         url: "/feature",
         templateUrl: "views/template.html",
@@ -112,7 +112,18 @@ firstapp.directive('masonry', function ($document) {
         }
     }
 });
-
+var formvalidation = function (allvalidation) {
+    var isvalid2 = true;
+    for (var i = 0; i < allvalidation.length; i++) {
+//        console.log("checking");
+//        console.log(allvalidation[i].field);
+        if (allvalidation[i].field == "" || !allvalidation[i].field || allvalidation[i].field == "Please select" || allvalidation[i].field == "Please Select") {
+            allvalidation[i].validation = "ng-dirty";
+            isvalid2 = false;
+        }
+    }
+    return isvalid2;
+};
 
 firstapp.directive("scroll", function ($window) {
     return function (scope, element, attrs) {

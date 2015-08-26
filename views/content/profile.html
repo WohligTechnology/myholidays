@@ -6,20 +6,20 @@
                 <div class="signin">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Name" required="">
+                            <input type="text" class="form-control" ng-model="profile.name" ng-class="allvalidation[0].validation" placeholder="Name *" required="">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email Id" required="">
+                            <input type="email" class="form-control" ng-model="profile.email" ng-class="allvalidation[1].validation" placeholder="Email Id *" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username" required="">
+                            <input type="text" class="form-control" ng-model="profile.username" ng-class="allvalidation[2].validation" placeholder="Username *" required="">
                         </div>
-                        <div class="form-group">
-                            <h5>Gender</h5>
+                        <div class="form-group" ng-class="allvalidation[3].validation">
+                            <h5>Gender *</h5>
                             <label class="radio-inline">
-                                <input type="radio" name="optradio">Male</label>
+                                <input type="radio" ng-model="profile.gender" value="male" name="optradio">Male</label>
                             <label class="radio-inline">
-                                <input type="radio" name="optradio">Female</label>
+                                <input type="radio" ng-model="profile.gender" value="female" name="optradio">Female</label>
                         </div>
                         <!--
                             <div class="form-group">
@@ -33,20 +33,21 @@
                         </div> 
 -->
                         <div class="form-group">
-                            <input type="date" class="form-control" placeholder="Birth Date" required="">
+                             <h5>Birth Date *</h5>
+                            <input type="date" class="form-control" ng-class="allvalidation[4].validation" ng-model="profile.dob" placeholder="Birth Date *" required="">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Address" required="">
+                            <input type="text" class="form-control" ng-class="allvalidation[5].validation" ng-model="profile.address" placeholder="Address *" required="">
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Contact" required="">
+                            <input type="tel" class="form-control" ng-class="allvalidation[6].validation" ng-model="profile.contact" placeholder="Contact *" required="">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Profession" required="">
+                            <input type="text" class="form-control" ng-class="allvalidation[7].validation" ng-model="profile.profession" placeholder="Profession *" required="">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-xl">Submit</button>
+                            <button type="submit" ng-click="createprofile(profile)" class="btn btn-xl">Submit</button>
                         </div>
                     </form>
                 </div>

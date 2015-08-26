@@ -6,109 +6,56 @@
                 <div class="col-md-8">
                     <div class="row">
                         <form class="form-horizontal">
+                          
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Merchant Id" required="">
+                                    <input type="text" class="form-control" ng-class="allvalidation[0].validation" ng-model="payment.amount" placeholder="Amount" required="">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Amount" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Order Id" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Redirect URL" required="">
-                                </div>
-                            </div>
+                         
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Bill Name" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Bill Address" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Bill Country" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Bill State" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Bill City" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Bill Zip" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Bill Tel" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Bill Email" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Ship Name" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Ship Address" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Ship Country" required="">
-                                </div>
-                            </div>        
-                                                   <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Ship State" required="">
-                                </div>
-                            </div>                  
-                                         <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Delivery City" required="">
-                                </div>
-                            </div> 
-                               <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Ship Zip" required="">
+                                    <input type="text" class="form-control" ng-class="allvalidation[1].validation" ng-model="payment.name" placeholder="Name" required="">
                                 </div>
                             </div>
                                <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Ship Tel" required="">
+                                    <input type="email" class="form-control" ng-class="allvalidation[2].validation" ng-model="payment.email" placeholder="Bill Email" required="">
                                 </div>
-                            </div>  
-                                                            <div class="col-md-12">
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Delivery Notes" required="">
+                                    <input type="text" class="form-control" ng-class="allvalidation[3].validation" ng-model="payment.billingaddress" placeholder="Bill Address" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-class="allvalidation[4].validation" ng-model="payment.billingcountry" placeholder="Bill Country" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-class="allvalidation[5].validation" ng-model="payment.billingstate" placeholder="Bill State" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-class="allvalidation[6].validation" ng-model="payment.billingcity" placeholder="Bill City" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-class="allvalidation[7].validation" ng-model="payment.billingzipcode" placeholder="Bill Zip" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-class="allvalidation[8].validation" ng-model="payment.billingcontact" placeholder="Contact" required="">
                                 </div>
                             </div>
                             <div class="clear-fix"></div>
                             <div class="col-md-12">
-                            <button type="submit" class="btn btn-xl">Submit</button>
+                            <button type="submit" ng-click="paymentform(payment)" class="btn btn-xl">Submit</button>
                             </div>
                         </form>
                     </div>

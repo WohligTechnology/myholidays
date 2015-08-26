@@ -1,4 +1,4 @@
-<div class="container popup-all" ng-controller="headerctrl">
+<div class="container popup-all" ng-controller="HomeCtrl">
     <div class="popup-dialogbox">
         <!--       login   -->
         <div class="holder1">
@@ -8,25 +8,27 @@
                 <div class="col-md-12">
                     <div class="signin">
                         <div class="signinor">
-                            <form class="form-horizontal" ng-submit="userlogin();">
+                            <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="email" class="form-control" placeholder="User Name *" required="" ng-model="login.email">
+                                        <input type="text" class="form-control" ng-class="allvalidation[0].validation" placeholder="Voucher number *" required="" ng-model="login.voucherno">
                                     </div>
                                 </div>
+<!--
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" placeholder="OTP *" required="">
                                     </div>
                                 </div>
+-->
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="password" class="form-control" placeholder="Password *" required="">
+                                        <input type="password" class="form-control" ng-class="allvalidation[1].validation" ng-model="login.password" placeholder="Password *" required="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-xl">Login</button>
+                                        <button type="submit" ng-click="login(login)" class="btn btn-xl">Login</button>
                                     </div>
                                 </div>
                             </form>

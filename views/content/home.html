@@ -6,7 +6,9 @@
             </div>
             <div class="intro-heading">A Premier Holidays Company</div>
             <div class="intro-lead-in">A pioneer in the industry for more than 5 years, My Holidays provides cutting-edge marketing solutions. We offer synergistic social media marketing and dynamic strategies delivering enhanced visibility, engagement and ROI while giving Buyers a Unbelievable offers and memorable services.</div>
-            <button class="page-scroll btn btn-xl" ng-click="showLogin();">Login</button>
+            <button class="page-scroll btn btn-xl" ng-click="showLogin();" ng-show="showLoginBtn">Login</button>
+            <button class="page-scroll btn btn-xl" ng-click="logout();" ng-hide="showLoginBtn">Logout</button>
+            <!--            <button class="page-scroll btn btn-xl" ng-if="loginid!=null" ng-click="showLogin();">Logout</button>-->
         </div>
     </div>
 </header>

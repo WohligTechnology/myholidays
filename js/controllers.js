@@ -1,16 +1,61 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'ngDialog', 'ngSanitize'])
 
-.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
+.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog, $location, $window) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("home");
         $scope.menutitle = NavigationService.makeactive("Home");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        $scope.showLoginBtn = true;
+        if ($.jStorage.get("userid"))
+            $scope.showLoginBtn = false;
         $scope.showLogin = function () {
             ngDialog.open({
                 template: 'views/content/login.html'
             });
         };
+        //Logout function
+        var logoutcallback=function(data,status){
+        console.log(data);
+            $.jStorage.flush();
+            $window.location.reload();
+        }
+        $scope.logout=function(){
+        NavigationService.logout(logoutcallback);
+        }
+        // login function
+        var authenticatecallback = function (data, status) {
+            $.jStorage.set("userid", data.id);
+            $scope.loginid = $.jStorage.get("userid");
+            $scope.navigation = NavigationService.getnav();
+            $window.location.reload();
+        }
+        var logincallback = function (data, status) {
+            console.log(data);
+            if (data == "true") {
+                $scope.closeThisDialog();
+                NavigationService.authenticate(authenticatecallback);
+            } else if (data == "false") {
+                ngDialog.open({
+                    template: 'views/content/login.html'
+                });
+            }
+        }
+        $scope.login = function (login) {
+            $scope.allvalidation = [{
+                field: $scope.login.voucherno,
+                validation: ""
+            }, {
+                field: $scope.login.password,
+                validation: ""
+            }];
+            var check = formvalidation($scope.allvalidation);
+            if (check) {
+                NavigationService.login(login, logincallback);
+            } else {
+                console.log("Invalid");
+            }
+        }
     })
     .controller('ProfileCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
         //Used to name the .html file
@@ -18,6 +63,54 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Profile");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        // create profile function by pooja
+
+        $scope.profile = {};
+        var profilecallback = function (data, status) {
+            console.log(data);
+            if (data == 1) {
+                ngDialog.open({
+                    template: 'views/content/profilesubmit.html'
+                });
+            } else {
+                console.log("false");
+            }
+        }
+        $scope.createprofile = function (profile) {
+
+            $scope.allvalidation = [{
+                field: $scope.profile.name,
+                validation: ""
+            }, {
+                field: $scope.profile.email,
+                validation: ""
+            }, {
+                field: $scope.profile.username,
+                validation: ""
+            }, {
+                field: $scope.profile.gender,
+                validation: ""
+            }, {
+                field: $scope.profile.dob,
+                validation: ""
+            }, {
+                field: $scope.profile.address,
+                validation: ""
+            }, {
+                field: $scope.profile.contact,
+                validation: ""
+            }, {
+                field: $scope.profile.profession,
+                validation: ""
+            }];
+            var check = formvalidation($scope.allvalidation);
+            if (check) {
+                NavigationService.createprofile(profile, profilecallback);
+            } else {
+                console.log("Invalid");
+            }
+
+        }
     })
     .controller('PayNowCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
         //Used to name the .html file
@@ -25,137 +118,65 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Pay Now");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    })
 
-.controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, $timeout, toaster, ngDialog, valdr) {
-    $scope.template = TemplateService.changecontent("feature");
-    $scope.menutitle = NavigationService.makeactive("Features");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-
-    //Angular Loader Example
-    //Start loader
-    //    $scope.showLoader = function() {
-    //        cfpLoadingBar.start();
-    //    }
-    //Complete loader
-    //    $scope.hideLoader = function() {
-    //        cfpLoadingBar.complete();
-    //    }
-
-    //Angular toaster
-    $scope.showToaster = function () {
-        toaster.pop({
-            type: 'success',
-            title: 'Success!',
-            body: 'Huraaay!',
-            showCloseButton: true
-        });
-    };
-
-    //Tags input
-    $scope.tags = [{
-        text: 'Chintan'
-    }, {
-        text: 'Saloni'
-    }, {
-        text: 'Sohan'
-    }, {
-        text: 'Mahesh'
-    }, {
-        text: 'Jagruti'
-    }];
-
-    //ngDialog
-    $scope.showPopup = function () {
-        ngDialog.open({
-            template: 'demopop'
-        });
-    };
-
-    //Valdr
-    valdr.addConstraints({
-        'Person': {
-            'firstName': {
-                'size': {
-                    'min': 3,
-                    'max': 20,
-                    'message': 'First name is required to be between 3 and 20 characters.'
-                },
-                'required': {
-                    'message': 'First name is required.'
-                }
+        // payment
+        $scope.payment = {};
+        var paymentcallback = function (data, status) {
+            if (data == 1) {
+                ngDialog.open({
+                    template: 'views/content/paynowsubmit.html'
+                });
+            } else {
+                console.log("false");
             }
         }
-    });
+        $scope.paymentform = function (payment) {
+            $scope.allvalidation = [{
+                field: $scope.payment.name,
+                validation: ""
+            }, {
+                field: $scope.payment.email,
+                validation: ""
+            }, {
+                field: $scope.payment.amount,
+                validation: ""
+            }, {
+                field: $scope.payment.billingaddress,
+                validation: ""
+            }, {
+                field: $scope.payment.billingcity,
+                validation: ""
+            }, {
+                field: $scope.payment.billingcontact,
+                validation: ""
+            }, {
+                field: $scope.payment.billingcountry,
+                validation: ""
+            }, {
+                field: $scope.payment.billingstate,
+                validation: ""
+            }, {
+                field: $scope.payment.billingzipcode,
+                validation: ""
+            }];
+            var check = formvalidation($scope.allvalidation);
+            if (check) {
+                $scope.payment = payment;
+                NavigationService.createpaymentorder($scope.payment, paymentcallback);
+            } else {
+                console.log("Invalid");
+            }
 
-    //Colours for ui-select
-    $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
-
-    //MomentJS
-    $scope.today = new Date();
-    $scope.dateformat = "medium";
-
-    /*reCaptcha*/
-    $scope.response = null;
-    $scope.widgetId = null;
-
-    $scope.setResponse = function (response) {
-        $scope.response = response;
-        console.log($scope.response);
-    };
-    $scope.setWidgetId = function (widgetId) {
-        console.info('Created widget ID: %s', widgetId);
-        $scope.widgetId = widgetId;
-    };
-    $scope.cbExpiration = function () {
-        console.info('Captcha expired. Resetting response object');
-        $scope.response = null;
-    };
-    $scope.submit = function () {
-        var valid;
-        /**
-         * SERVER SIDE VALIDATION
-         *
-         * You need to implement your server side validation here.
-         * Send the reCaptcha response to the server and use some of the server side APIs to validate it
-         * See https://developers.google.com/recaptcha/docs/verify
-         */
-        console.log('sending the captcha response to the server', $scope.response);
-        //        if (valid) {
-        //            console.log('Success');
-        //        } else {
-        //            console.log('Failed validation');
-        //            // In case of a failed validation you need to reload the captcha
-        //            // because each response can be checked just once
-        //            vcRecaptchaService.reload($scope.widgetId);
-        //        }
-    };
-
-})
-
-.controller('InfiniteCtrl', function ($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("infinite");
-    $scope.menutitle = NavigationService.makeactive("Infinite Scroll");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-
-    //Infinite scroll
-    $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
-    $scope.loadMore = function () {
-        var last = $scope.images[$scope.images.length - 1];
-        for (var i = 1; i <= 8; i++) {
-            $scope.images.push(last + i);
         }
-    };
-})
+    })
+
 
 .controller('headerctrl', function ($scope, TemplateService) {
     $scope.template = TemplateService;
 })
 
 .controller('VoucherCtrl', function ($scope, TemplateService, NavigationService) {
-      $scope.template = TemplateService.changecontent("voucher");
+    $scope.template = TemplateService.changecontent("voucher");
     $scope.menutitle = NavigationService.makeactive("Voucher");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
@@ -167,7 +188,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }, {
         "id": 1,
         "picture": "img/voucher/2.jpg",
-     
+
         }, {
         "id": 2,
         "picture": "img/voucher/3.jpg",
