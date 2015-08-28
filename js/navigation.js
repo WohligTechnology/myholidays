@@ -43,6 +43,9 @@ var navigationservice = angular.module('navigationservice', [])
         authenticate: function (callback) {
             return $http.get(admin_url + 'json/authenticate', {}).success(callback);
         }, 
+          checkstatus: function (orderid,callback) {
+            return $http.get(admin_url + 'json/checkstatus?orderid=' + orderid, {}).success(callback);
+        }, 
         logout: function (callback) {
             return $http.get(admin_url + 'json/logout', {}).success(callback);
         },
@@ -68,6 +71,7 @@ var navigationservice = angular.module('navigationservice', [])
                 url: admin_url + "json/createpaymentorder",
                 method: "POST",
                 data: {
+                    'user': $.jStorage.get("userid"),
                     'name': payment.name,
                     'email': payment.email,
                     'amount': payment.amount,
