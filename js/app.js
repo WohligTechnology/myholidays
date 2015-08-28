@@ -31,7 +31,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: "views/template.html",
             controller: 'PayNowCtrl'
         })
-  
+
     .state('feature', {
         url: "/feature",
         templateUrl: "views/template.html",
@@ -45,10 +45,20 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     })
 
     .state('voucher', {
-        url: "/voucher",
-        templateUrl: "views/template.html",
-        controller: 'VoucherCtrl'
-    })
+            url: "/voucher",
+            templateUrl: "views/template.html",
+            controller: 'VoucherCtrl'
+        })
+        .state('thankyoupage', {
+            url: "/thankyou",
+            templateUrl: "views/template.html",
+            controller: 'thankyouCtrl'
+        })
+        .state('failurepage', {
+            url: "/failure",
+            templateUrl: "views/template.html",
+            controller: 'failureCtrl'
+        })
 
     $urlRouterProvider.otherwise("/home");
 
@@ -115,8 +125,8 @@ firstapp.directive('masonry', function ($document) {
 var formvalidation = function (allvalidation) {
     var isvalid2 = true;
     for (var i = 0; i < allvalidation.length; i++) {
-//        console.log("checking");
-//        console.log(allvalidation[i].field);
+        //        console.log("checking");
+        //        console.log(allvalidation[i].field);
         if (allvalidation[i].field == "" || !allvalidation[i].field || allvalidation[i].field == "Please select" || allvalidation[i].field == "Please Select") {
             allvalidation[i].validation = "ng-dirty";
             isvalid2 = false;

@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'ngDialog', 'ngSanitize'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'ngDialog', 'ngSanitize','base64'])
 
 .controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog, $location, $window) {
         //Used to name the .html file
@@ -115,7 +115,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
         }
     })
-    .controller('PayNowCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog,$interval) {
+    .controller('PayNowCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog,$interval,$base64) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("pay-now");
         $scope.menutitle = NavigationService.makeactive("Pay Now");
@@ -123,6 +123,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
         // payment
         $scope.payment = {};
+      $scope.encodedurl = $base64.encode('http://localhost/myholidays/#/failure');
         var paymentcallback = function (data, status) {
              $scope.orderid=data;
                 $scope.succurl = "http://localhost/hotel/index.php/json/payumoneysuccess1?orderid=" + data
@@ -132,12 +133,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     template: 'views/content/tryagain.html'
                 });
             } else {
-                  ngDialog.open({
-                    template: 'views/content/paynowsubmit.html'
-                });
 //                  ref = window.open("http://localhost/hotel/payumoney/paymentgateway.php?orderid=" +  $scope.orderid + "&firstname=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&phone="+ $scope.payment.billingcontact+"&productinfo=myholidays&surl=http://localhost/hotel/index.php/json/payumoneysuccess1?orderid=" + data + "&furl=wohlig.com", '_blank', 'location=no'); 
 //                ref = window.open("http://wohlig.co.in/hotel/payumoney/paymentgateway.php?orderid=" +  $scope.orderid + "&name=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&billingaddress=" + $scope.payment.billingaddress + "&billingcity=" + $scope.payment.billingcity + "&billingcontact="+ $scope.payment.billingcontact+ "&billingcountry="+$scope.payment.billingcountry+"&billingstate="+$scope.payment.billingstate+"&billingzipcode="+$scope.payment.billingzipcode+"&surl=http://wohlig.co.in/hotel/index.php/json/payumoneysuccess1?orderid=" + data + "&furl=wohlig.com", '_blank', 'location=no'); 
-                ref = window.open("http://localhost/hotel/payumoney/paymentgateway.php?orderid=" +  $scope.orderid + "&firstname=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&address1=" + $scope.payment.billingaddress + "&city=" + $scope.payment.billingcity + "&phone="+ $scope.payment.billingcontact+ "&country="+$scope.payment.billingcountry+"&state="+$scope.payment.billingstate+"&zipcode="+$scope.payment.billingzipcode+"&productinfo=myholidays&surl=http://localhost/hotel/index.php/json/payumoneysuccess1?orderid=" + data + "&furl=wohlig.com", '_blank', 'location=no');
+                ref = window.open("http://localhost/hotel/payumoney/paymentgateway.php?orderid=" +  $scope.orderid + "&firstname=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&address1=" + $scope.payment.billingaddress + "&city=" + $scope.payment.billingcity + "&phone="+ $scope.payment.billingcontact+ "&country="+$scope.payment.billingcountry+"&state="+$scope.payment.billingstate+"&zipcode="+$scope.payment.billingzipcode+"&productinfo=myholidays&surl=http://localhost/hotel/index.php/json/payumoneysuccess1?orderid=" + data + "&furl="+$scope.encodedurl, '_blank', 'location=no');
 //            stopinterval = $interval(callAtInterval, 2000);
             }
         }
@@ -180,6 +178,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
         }
     })
+.controller('thankyouCtrl', function ($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("thankyoupage");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+    .controller('failureCtrl', function ($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("failurepage");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
 
 
 .controller('headerctrl', function ($scope, TemplateService) {
