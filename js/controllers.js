@@ -60,6 +60,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     .controller('ProfileCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("profile");
+        TemplateService.header = "views/header-inner.html";
         $scope.menutitle = NavigationService.makeactive("Profile");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
@@ -119,6 +120,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     .controller('PayNowCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog, $interval, $base64) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("pay-now");
+        TemplateService.header = "views/header-inner.html";
         $scope.menutitle = NavigationService.makeactive("Pay Now");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
@@ -133,7 +135,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     template: 'views/content/tryagain.html'
                 });
             } else {
-                ref = window.open("http://localhost/hotel/payumoney/paymentgateway.php?orderid=" + $scope.orderid + "&firstname=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&address1=" + $scope.payment.billingaddress + "&city=" + $scope.payment.billingcity + "&phone=" + $scope.payment.billingcontact + "&country=" + $scope.payment.billingcountry + "&state=" + $scope.payment.billingstate + "&zipcode=" + $scope.payment.billingzipcode + "&productinfo=myholidays&surl="+admin_url+"json/payumoneysuccess1?orderid=" + data + "&furl=" + $scope.encodedurl, '_blank', 'location=no');
+                ref = window.open("http://localhost/hotel/payumoney/paymentgateway.php?orderid=" + $scope.orderid + "&firstname=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&address1=" + $scope.payment.billingaddress + "&city=" + $scope.payment.billingcity + "&phone=" + $scope.payment.billingcontact + "&country=" + $scope.payment.billingcountry + "&state=" + $scope.payment.billingstate + "&zipcode=" + $scope.payment.billingzipcode + "&productinfo=myholidays&surl=" + admin_url + "json/payumoneysuccess1?orderid=" + data + "&furl=" + $scope.encodedurl, '_blank', 'location=no');
                 $scope.payment = {};
             }
         }
@@ -178,12 +180,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
     .controller('thankyouCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("thankyoupage");
+        TemplateService.header = "views/header-inner.html";
         $scope.menutitle = NavigationService.makeactive("");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
     .controller('failureCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("failurepage");
+        TemplateService.header = "views/header-inner.html";
         $scope.menutitle = NavigationService.makeactive("");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
@@ -193,6 +197,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
     .controller('VoucherCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("voucher");
+        TemplateService.header = "views/header-inner.html";
         $scope.menutitle = NavigationService.makeactive("Voucher");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();

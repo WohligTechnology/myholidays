@@ -5,19 +5,24 @@ body {
     overflow-x: hidden;
     .body-font;
 }
+
 .text-muted {
     color: @gray;
 }
+
 .text-primary {
     color: @brand-primary;
 }
+
 p {
     font-size: 14px;
     line-height: 1.75;
 }
+
 p.large {
     font-size: 16px;
 }
+
 a,
 a:hover,
 a:focus,
@@ -25,15 +30,18 @@ a:active,
 a.active {
     outline: none;
 }
+
 a {
     color: @brand-primary;
 }
+
 a:hover,
 a:focus,
 a:active,
 a.active {
     color: darken(@brand-primary, 10%);
 }
+
 h1,
 h2,
 h3,
@@ -43,15 +51,19 @@ h6 {
     .heading-font;
     font-weight: 700;
 }
+
 .img-centered {
     margin: 0 auto;
 }
+
 .bg-light-gray {
     background-color: @gray-lighter;
 }
+
 .bg-darkest-gray {
     background-color: @gray-darkest;
 }
+
 // Restyled Primary Buttons
 .btn-primary {
     .button-variant(white;
@@ -60,6 +72,7 @@ h6 {
     .heading-font;
     font-weight: 700;
 }
+
 .btn-xl {
     .button-variant(white;
     @brand-primary;
@@ -70,13 +83,15 @@ h6 {
     font-size: 18px;
     padding: 20px 40px;
 }
+
 // Custom Navigation Bar
 .navbar-default {
-    background-color: @gray-darkest;
+    background-color: transparent;
     border-color: transparent;
     .navbar-brand {
         color: #fff;
         text-transform: uppercase;
+        font-weight: 500;
         .script-font;
         &:hover,
         &:focus,
@@ -125,9 +140,10 @@ h6 {
         background-color: darken(@brand-primary, 10%);
     }
 }
+
 @media(min-width:768px) {
     .navbar-default {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0);
         padding: 15px 0;
         -webkit-transition: padding 0.3s;
         -moz-transition: padding 0.3s;
@@ -151,6 +167,7 @@ h6 {
         }
     }
 }
+
 header {
     background-image: url('../img/home-bg.jpg');
     background-repeat: none;
@@ -182,6 +199,7 @@ header {
         }
     }
 }
+
 @media(min-width:768px) {
     header {
         .intro-text {
@@ -194,7 +212,7 @@ header {
                 line-height: 22px;
                 margin-bottom: 50px;
                 padding: 0px 59px;
-                font-weight: 300;
+                font-weight: 400;
             }
             .logo {
                 margin-bottom: 50px;
@@ -210,6 +228,7 @@ header {
         }
     }
 }
+
 // Global Section Styles
 section {
     padding: 100px 0;
@@ -217,6 +236,7 @@ section {
         font-size: 40px;
         margin-top: 0;
         margin-bottom: 15px;
+        font-weight: 500;
     }
     h3.section-subheading {
         font-size: 16px;
@@ -227,16 +247,19 @@ section {
         margin-bottom: 75px;
     }
 }
+
 @media(min-width:768px) {
     section {
         padding: 75px 0;
     }
 }
+
 // Services Section
 .service-heading {
     margin: 15px 0;
     text-transform: none;
 }
+
 // Portfolio Section
 #portfolio {
     .portfolio-item {
@@ -300,6 +323,7 @@ section {
         z-index: 2;
     }
 }
+
 @media(min-width:767px) {
     #portfolio {
         .portfolio-item {
@@ -307,6 +331,7 @@ section {
         }
     }
 }
+
 // Timeline
 .timeline {
     list-style: none;
@@ -408,6 +433,7 @@ section {
         }
     }
 }
+
 @media(min-width:768px) {
     .timeline {
         &:before {
@@ -441,6 +467,7 @@ section {
         }
     }
 }
+
 @media(min-width:992px) {
     .timeline {
         > li {
@@ -464,6 +491,7 @@ section {
         }
     }
 }
+
 @media(min-width:1200px) {
     .timeline {
         > li {
@@ -485,6 +513,7 @@ section {
         }
     }
 }
+
 // Team Section
 .team-member {
     text-align: center;
@@ -502,12 +531,14 @@ section {
         margin-top: 0;
     }
 }
+
 // Clients Aside
 aside.clients {
     img {
         margin: 50px auto;
     }
 }
+
 // Contact Section
 section#contact {
     background-color: @gray-darkest;
@@ -515,6 +546,7 @@ section#contact {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 section.profile.conct-prof {
     padding: 100px 0;
     h2.section-heading {
@@ -522,24 +554,27 @@ section.profile.conct-prof {
         color: #DA9A33;
     }
 }
+
 section.conct-prof {
     .section-heading {
         color: white;
     }
     .form-group {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         margin-right: 0px;
         input,
         textarea {
-            padding: 12px;
+            padding: 7px 12px;
+            box-shadow: inset 0 0px 0px;
         }
         input.form-control {
             height: auto;
             border-radius: 0px;
         }
         textarea.form-control {
-            height: 188px;
+            height: 80px;
             border-radius: 0px;
+            resize: none;
         }
     }
     .form-control:focus {
@@ -548,30 +583,31 @@ section.conct-prof {
     }
     ::-webkit-input-placeholder {
         .heading-font;
-        font-weight: 700;
+        font-weight: 400;
         color: @placeholder-text;
     }
     :-moz-placeholder {
         /* Firefox 18- */
         .heading-font;
-        font-weight: 700;
+        font-weight: 400;
         color: @placeholder-text;
     }
     ::-moz-placeholder {
         /* Firefox 19+ */
         .heading-font;
-        font-weight: 700;
+        font-weight: 400;
         color: @placeholder-text;
     }
     :-ms-input-placeholder {
         .heading-font;
-        font-weight: 700;
+        font-weight: 400;
         color: @placeholder-text;
     }
     .text-danger {
         color: @brand-danger;
     }
 }
+
 // Footer
 footer {
     padding: 25px 0;
@@ -588,6 +624,7 @@ footer {
         text-transform: none;
     }
 }
+
 // Social Buttons
 ul.social-buttons {
     margin-bottom: 0;
@@ -613,12 +650,14 @@ ul.social-buttons {
         }
     }
 }
+
 .btn:focus,
 .btn:active,
 .btn.active,
 .btn:active:focus {
     outline: none;
 }
+
 .portfolio-modal {
     .modal-content {
         border-radius: 0;
@@ -690,27 +729,34 @@ ul.social-buttons {
         display: none;
     }
 }
+
 // Highlight Color Customization
 ::-moz-selection {
     text-shadow: none;
     background: @brand-primary;
 }
+
 ::selection {
     text-shadow: none;
     background: @brand-primary;
 }
+
 img::selection {
     background: transparent;
 }
+
 img::-moz-selection {
     background: transparent;
 }
+
 body {
     webkit-tap-highlight-color: @brand-primary;
 }
+
 .btn-xl {
     padding: 10px 35px;
 }
+
 .ngdialog-open {
     .popup-dialogbox {
         position: absolute;
@@ -779,4 +825,12 @@ body {
     .text-danger {
         color: @brand-danger;
     }
+}
+
+.footer {
+    box-shadow: 0px -2px 4px #ddd;
+}
+
+h3#ngdialog1-aria-labelledby {
+    font-weight: 400;
 }

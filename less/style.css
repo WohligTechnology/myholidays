@@ -35,7 +35,7 @@ a:active,
 a.active {
   outline: none;
 }
-a { 
+a {
   color: #da9a33;
 }
 a:hover,
@@ -155,12 +155,13 @@ fieldset[disabled] .btn-xl.active {
   background-color: white;
 }
 .navbar-default {
-  background-color: #222222;
+  background-color: transparent;
   border-color: transparent;
 }
 .navbar-default .navbar-brand {
   color: #fff;
   text-transform: uppercase;
+  font-weight: 500;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, cursive;
 }
 .navbar-default .navbar-brand:hover,
@@ -207,7 +208,7 @@ fieldset[disabled] .btn-xl.active {
 }
 @media (min-width: 768px) {
   .navbar-default {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0);
     padding: 15px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
@@ -253,7 +254,7 @@ header .intro-text {
 header .intro-text .intro-lead-in {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: italic;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 22px;
   font-weight: 100;
   margin-bottom: 25px;
@@ -262,7 +263,7 @@ header .intro-text .intro-heading {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 100;
-  font-size: 50px;
+  font-size: 36px;
   line-height: 50px;
   margin-bottom: 25px;
 }
@@ -278,7 +279,7 @@ header .intro-text .intro-heading {
     line-height: 22px;
     margin-bottom: 50px;
     padding: 0px 59px;
-    font-weight: 300;
+    font-weight: 400;
   }
   header .intro-text .logo {
     margin-bottom: 50px;
@@ -299,6 +300,7 @@ section h2.section-heading {
   font-size: 40px;
   margin-top: 0;
   margin-bottom: 15px;
+  font-weight: 500;
 }
 section h3.section-subheading {
   font-size: 16px;
@@ -585,20 +587,22 @@ section.conct-prof .section-heading {
   color: white;
 }
 section.conct-prof .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   margin-right: 0px;
 }
 section.conct-prof .form-group input,
 section.conct-prof .form-group textarea {
-  padding: 12px;
+  padding: 7px 12px;
+  box-shadow: inset 0 0px 0px;
 }
 section.conct-prof .form-group input.form-control {
   height: auto;
   border-radius: 0px;
 }
 section.conct-prof .form-group textarea.form-control {
-  height: 188px;
+  height: 80px;
   border-radius: 0px;
+  resize: none;
 }
 section.conct-prof .form-control:focus {
   border-color: #da9a33;
@@ -607,27 +611,27 @@ section.conct-prof .form-control:focus {
 section.conct-prof ::-webkit-input-placeholder {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
   color: #bbbbbb;
 }
 section.conct-prof :-moz-placeholder {
   /* Firefox 18- */
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
   color: #bbbbbb;
 }
 section.conct-prof ::-moz-placeholder {
   /* Firefox 19+ */
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
   color: #bbbbbb;
 }
 section.conct-prof :-ms-input-placeholder {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
   color: #bbbbbb;
 }
 section.conct-prof .text-danger {
@@ -838,8 +842,14 @@ body {
 .ngdialog-open .text-danger {
   color: #e74c3c;
 }
+.footer {
+  box-shadow: 0px -2px 4px #dddddd;
+}
+h3#ngdialog1-aria-labelledby {
+  font-weight: 400;
+}
 .grid-item {
-  width: 33.33%;
+  width: 30%;
   border: 3px solid #fff;
 }
 .grid-item img {
@@ -850,6 +860,9 @@ body {
   box-shadow: 0px 2px 1px #bbbbbb;
   padding: 20px;
 }
+.img-holdr .row {
+  margin: 0;
+}
 .navbar-fixed {
   position: fixed;
   background: #222222;
@@ -858,4 +871,24 @@ body {
 .navbar-fixed-top.min {
   background: #000;
   color: #fff;
+}
+.ngdialog-close {
+  display: none;
+}
+.popup-info-captcha p {
+  font-size: 18px;
+  text-align: center;
+}
+.form-control.remove-padding {
+  line-height: 1!important;
+}
+.min-height {
+  min-height: 335px;
+  position: relative;
+}
+.min-height .abst {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
 }

@@ -13,7 +13,7 @@
 @import "mixins.less";
 @import "agency.less";
 .grid-item {
-    width: 33.33%;
+    width: 30%;
     border: 3px solid #fff;
     img {
         width: 100%;
@@ -24,6 +24,9 @@
     border: 1px solid @gray-lighter;
     box-shadow: 0px 2px 1px @placeholder-text;
     padding: 20px;
+    .row {
+        margin: 0;
+    }
 }
 
 .navbar-fixed {
@@ -44,4 +47,19 @@
 .popup-info-captcha p {
     font-size: 18px;
     text-align: center;
+}
+
+.form-control.remove-padding {
+    line-height: 1!important;
+}
+
+.min-height {
+    min-height: 335px;
+    position: relative;
+    .abst {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%)
+    }
 }
