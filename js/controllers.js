@@ -72,6 +72,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 ngDialog.open({
                     template: 'views/content/profilesubmit.html'
                 });
+                 $scope.profile = {};
             } else {
                 console.log("false");
                   ngDialog.open({
@@ -137,6 +138,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 //                ref = window.open("http://wohlig.co.in/hotel/payumoney/paymentgateway.php?orderid=" +  $scope.orderid + "&name=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&billingaddress=" + $scope.payment.billingaddress + "&billingcity=" + $scope.payment.billingcity + "&billingcontact="+ $scope.payment.billingcontact+ "&billingcountry="+$scope.payment.billingcountry+"&billingstate="+$scope.payment.billingstate+"&billingzipcode="+$scope.payment.billingzipcode+"&surl=http://wohlig.co.in/hotel/index.php/json/payumoneysuccess1?orderid=" + data + "&furl=wohlig.com", '_blank', 'location=no'); 
                 ref = window.open("http://localhost/hotel/payumoney/paymentgateway.php?orderid=" +  $scope.orderid + "&firstname=" + $scope.payment.name + "&email=" + $scope.payment.email + "&amount=" + $scope.payment.amount + "&address1=" + $scope.payment.billingaddress + "&city=" + $scope.payment.billingcity + "&phone="+ $scope.payment.billingcontact+ "&country="+$scope.payment.billingcountry+"&state="+$scope.payment.billingstate+"&zipcode="+$scope.payment.billingzipcode+"&productinfo=myholidays&surl=http://localhost/hotel/index.php/json/payumoneysuccess1?orderid=" + data + "&furl="+$scope.encodedurl, '_blank', 'location=no');
 //            stopinterval = $interval(callAtInterval, 2000);
+                 $scope.payment = {};
             }
         }
         $scope.paymentform = function (payment) {
