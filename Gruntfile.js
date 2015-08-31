@@ -167,7 +167,7 @@ module.exports = function (grunt) {
                         return "firstapp.run(['$templateCache', function($templateCache) {" + script + "}]);";
                     }
                 },
-                src: './views/**.html',
+                src: 'views/**.html',
                 dest: './w/template/views.js',
             },
             templatecontent: {
@@ -186,7 +186,7 @@ module.exports = function (grunt) {
                         return "firstapp.run(['$templateCache', function($templateCache) {" + script + "}]);";
                     }
                 },
-                src: './views/content/**.html',
+                src: 'views/content/**.html',
                 dest: './w/template/content.js',
             },
             templatedirective: {
@@ -205,7 +205,7 @@ module.exports = function (grunt) {
                         return "firstapp.run(['$templateCache', function($templateCache) {" + script + "}]);";
                     }
                 },
-                src: './views/directive/**.html',
+                src: 'views/directive/**.html',
                 dest: './w/template/directive.js',
             }
         },
