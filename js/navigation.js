@@ -1,5 +1,5 @@
-//var admin_url = "http://localhost/hotel/index.php/";
-var admin_url = "http://wohlig.co.in/myholidays/admin/index.php/";
+var admin_url = "http://localhost/hotel/index.php/";
+//var admin_url = "http://wohlig.co.in/myholidays/admin/index.php/";
 var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function ($http) {
